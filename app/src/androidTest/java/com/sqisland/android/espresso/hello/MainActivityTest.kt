@@ -11,6 +11,17 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+import org.junit.After
+import com.microsoft.appcenter.espresso.Factory
+import com.microsoft.appcenter.espresso.ReportHelper
+import android.R.attr.label
+
+
+
+@Rule
+var reportHelper: ReportHelper = Factory.getReportHelper()
+
+
 @RunWith(AndroidJUnit4::class)
 class MainActivityTest {
   @get:Rule
@@ -28,4 +39,10 @@ class MainActivityTest {
     onView(withId(R.id.greeting))
       .check(matches(withText(R.string.hello)))
   }
+
+    @After
+    fun TearDown() {
+        reportHelper.label("Stopping App")
+    }
+
 }
